@@ -14,8 +14,8 @@ le ID du client de la commande ne correspond a aucun client
 [📥 t=0] Cmd #3 (Martin) → 🍔
 [📥 t=0] Cmd #3 (Martin) → 🍕
 ⏩ AVANCER_TEMPS;2
-[🍳 t=1] Cmd #1 commence (1 min)
 [🍳 t=1] Cmd #2 commence (6 min)
+[🍳 t=1] Cmd #1 commence (1 min)
 [✅ t=1] Cmd #1 terminée → Alice 😋
 [😡 t=2] Martin part fâché (pat=0)
 [t=2] 👥3 😋2 😡1 📥0 🍳1
@@ -46,7 +46,7 @@ le ID du client de la commande ne correspond a aucun client
 	😡 Fâchés		: 1
 	💰 Chiffre d'affaires : 49.45 $
 	Plats vendus :
-		PIZZA : 2
 		FRITES : 2
+		PIZZA : 2
 		BURGER : 1
 ===================================
