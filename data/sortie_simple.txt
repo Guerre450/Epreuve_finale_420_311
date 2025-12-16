@@ -1,7 +1,7 @@
 ========== RUSH AU RESTO ==========
 🍽️ Lecture des actions : data/scenario_simple.txt
 
-[⏱️] Service = 10 min, 👨‍🍳 = 2
+[⏱️] Service = 12 min, 👨‍🍳 = 2
 le ID du client de la commande ne correspond a aucun client
 [🚪 t=0] 🧍 Client #1 "Alice" (pat=5)
 [📥 t=0] Cmd #1 (Alice) → 🍟
@@ -46,7 +46,7 @@ le ID du client de la commande ne correspond a aucun client
 	😡 Fâchés		: 1
 	💰 Chiffre d'affaires : 49.45 $
 	Plats vendus :
-		FRITES : 2
 		PIZZA : 2
+		FRITES : 2
 		BURGER : 1
 ===================================
