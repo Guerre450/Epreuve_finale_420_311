@@ -1,7 +1,15 @@
 package mv.sdd.model;
 
-public class Horloge {
+import mv.sdd.interfaces.NotificationSender;
+
+/**
+ * Classe qui s'occupe du temps globale.
+ */
+public class Horloge implements NotificationSender {
     private int tempsSimule = 0;
+
+
+
 
     public int getTempsSimule() {
         return tempsSimule;
@@ -9,5 +17,6 @@ public class Horloge {
 
     public void avancerTempsSimule(int minutes) {
         this.tempsSimule += minutes;
+        sendNotification();
     }
 }

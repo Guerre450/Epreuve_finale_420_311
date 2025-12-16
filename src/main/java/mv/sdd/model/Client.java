@@ -1,19 +1,26 @@
 package mv.sdd.model;
 
+import mv.sdd.interfaces.NotificationListener;
+import mv.sdd.sim.Restaurant;
+
 import java.util.Objects;
 
-public class Client {
+/**
+ * Client du restaurant
+ */
+public class Client implements NotificationListener {
     private final int id;
     private final String nom;
     private int patience;
     private EtatClient etat;
     private Commande commande;
-
-    public Client(int id, String nom, int patienceInitiale) {
+    private final Restaurant restaurant;
+    public Client(int id, String nom, int patienceInitiale, Restaurant resto) {
         this.id = id;
         this.nom = nom;
         this.patience = patienceInitiale;
         this.etat = EtatClient.EN_ATTENTE;
+        this.restaurant = resto;
     }
 
     public int getId() {
@@ -28,8 +35,24 @@ public class Client {
         return patience;
     }
 
+    /**
+     * Diminue la patience du client
+     * @param minutes Montant de patience
+     */
     public void diminuerPatience(int minutes) {
-        // TODO: diminuer patience et passer à PARTI_FACHE si <= 0
+
+        if (etat == EtatClient.SERVI || etat == EtatClient.PARTI_FACHE  || commande == null){
+            return;
+        }
+        if(commande.getEtat() != EtatCommande.EN_ATTENTE){
+            setEtat(EtatClient.SERVI);
+        }
+        patience -= minutes;
+        if(patience <= 0){
+            etat = EtatClient.PARTI_FACHE;
+            commande.setEtat(EtatCommande.PERDUE);
+            restaurant.logCommandeClientPerdu(this);
+        }
     }
 
     public EtatClient getEtat() {
@@ -58,5 +81,10 @@ public class Client {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    @Override
+    public void receiverNotification() {
+        diminuerPatience(1);
     }
 }

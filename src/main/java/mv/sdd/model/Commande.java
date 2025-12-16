@@ -1,19 +1,29 @@
 package mv.sdd.model;
 
-public class Commande {
+import mv.sdd.interfaces.NotificationListener;
+import mv.sdd.utils.Constantes;
+
+import java.util.ArrayList;
+
+/**
+ * Classe des commandes du restaurant
+ */
+public class Commande implements NotificationListener {
     private int id;
     private static int nbCmd = 0;
     private final Client client;
     private EtatCommande etat = EtatCommande.EN_ATTENTE;
     private int tempsRestant; // en minutes simulées
-    // TODO : ajouter l'attribut plats et son getter avec le bon type et le choix de la SdD adéquat
-    // private final <Votre structure de choix adéquat> plats
+    private final ArrayList<Plat> plats = new ArrayList<>();
 
-    // TODO : Ajout du ou des constructeur(s) nécessaires ou compléter au besoin
+    public ArrayList<Plat> getPlats() {
+        return plats;
+    }
+
     public Commande(Client client, MenuPlat plat) {
         id = ++nbCmd;
         this.client = client;
-        // À compléter
+        ajouterPlat(plat);
     }
 
     public int getId() {
@@ -36,15 +46,35 @@ public class Commande {
         this.etat = etat;
     }
 
-    // TODO : Ajoutez la méthode ajouterPlat
+    public void ajouterPlat(MenuPlat menuPlat){
+        plats.add(Constantes.MENU.get(menuPlat));
+    }
 
-    // TODO : Ajoutez la méthode demarrerPreparation
+    /**
+     * Demarrer la preparation de la commande
+     */
+    public void demarrerPreparation(){
+        tempsRestant = calculerTempsPreparationTotal();
+        etat = EtatCommande.EN_PREPARATION;
+    }
 
-    // TODO : Ajoutez la méthode decrementerTempsRestant
+    public synchronized void decrementerTempsRestant(){
+        tempsRestant--;
+        if (tempsRestant < 1){
+            setEtat(EtatCommande.PRETE);
+        }
+    }
 
-    // TODO : Ajoutez la méthode estTermineeParTemps
+    @Override
+    public void receiverNotification() {
+        decrementerTempsRestant();
+    }
 
-    // TODO : Ajoutez la méthode calculerTempsPreparationTotal
+    public int calculerTempsPreparationTotal(){
+        return plats.stream().mapToInt(Plat::getTempsPreparation).sum();
+    }
 
-    // TODO : Ajoutez la méthode calculerMontant
+    public double calculerMontant(){
+        return plats.stream().mapToDouble(Plat::getPrix).sum();
+    }
 }

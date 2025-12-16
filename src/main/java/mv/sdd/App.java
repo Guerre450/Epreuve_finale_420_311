@@ -6,20 +6,23 @@ import mv.sdd.sim.Restaurant;
 import mv.sdd.utils.Constantes;
 import mv.sdd.utils.Logger;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * 420-311 : STRUCTURE DE DONNÉES
  * ÉPREUVE FINALE : VOLET 1
  *
- * @author VOTRE NOM ET PRENOM
+ * @author Cedric Champoux
  */
 public class App {
     public static void main( String[] args ) {
         if (args.length < 2) {
+            Arrays.stream(args).toList().forEach(System.out::println);
             System.err.println("Usage : java App <fichier_actions> <fichier_resultat>");
             return;
         }
@@ -41,13 +44,17 @@ public class App {
             for (Action action : actions) {
                 restaurant.executerAction(action);
             }
-
-            // TODO : Ajuster au besoin
             restaurant.arreterService();
             logger.logLine(Constantes.FOOTER_APP);
 
-        } catch (IOException e) {
+        }
+        catch (FileNotFoundException e){
+            System.err.println("Argument 1 : Fichier Introuvable");
+        }
+        catch (IOException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
     }

@@ -82,7 +82,7 @@ public class Constantes {
     public static final String EVENT_CMD_DEBUT = "[" + EMO_PREP + " t=%d] Cmd #%d commence (%d min)";
     public static final String EVENT_CMD_TERMINEE = "[" + EMO_OK + " t=%d] Cmd #%d terminée → %s " + EMO_CLIENT_SERVI;
     public static final String EVENT_CLIENT_FACHE = "[" + EMO_CLIENT_FACHE + " t=%d] %s part fâché (pat=0)";
-
+    public static final String LIGNE_CLIENT = " #%d %s %s (pat=%d, %s)";
     // ============== Menu ==========================
     public static final Map<MenuPlat, Plat> MENU;
 

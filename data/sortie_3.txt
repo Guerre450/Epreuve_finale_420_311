@@ -1,6 +1,8 @@
 ========== RUSH AU RESTO ==========
-🍽️ Lecture des actions : data/scenario_simple.txt
+🍽️ Lecture des actions : data/scenario_3.txt
 
+Client ne peux être rajouter pendant la fermeture du restaurant
+Commande ne peux être rajouter pendant la fermeture du restaurant
 [⏱️] Service = 10 min, 👨‍🍳 = 2
 le ID du client de la commande ne correspond a aucun client
 [🚪 t=0] 🧍 Client #1 "Alice" (pat=5)
@@ -13,9 +15,10 @@ le ID du client de la commande ne correspond a aucun client
 [📥 t=0] Cmd #3 (Martin) → 🍕
 [📥 t=0] Cmd #3 (Martin) → 🍔
 [📥 t=0] Cmd #3 (Martin) → 🍕
+No enum constant mv.sdd.model.MenuPlat.POUTINE
 ⏩ AVANCER_TEMPS;2
-[🍳 t=1] Cmd #1 commence (1 min)
 [🍳 t=1] Cmd #2 commence (6 min)
+[🍳 t=1] Cmd #1 commence (1 min)
 [✅ t=1] Cmd #1 terminée → Alice 😋
 [😡 t=2] Martin part fâché (pat=0)
 [t=2] 👥3 😋2 😡1 📥0 🍳1
@@ -23,7 +26,7 @@ le ID du client de la commande ne correspond a aucun client
  #2 Jorge 😋 (pat=3, 🍕 🍔 🍟)
  #3 Martin 😡 (pat=0, 🍕 🍔 🍕)
 ⏩ AVANCER_TEMPS;5
-[✅ t=6] Cmd #2 terminée → Jorge 😋
+[✅ t=7] Cmd #2 terminée → Jorge 😋
 [🚪 t=7] 🧍 Client #4 "Partrice" (pat=5)
 [📥 t=7] Cmd #4 (Partrice) → 🍕
 [t=7] 👥4 😋2 😡1 📥1 🍳0
@@ -32,21 +35,21 @@ le ID du client de la commande ne correspond a aucun client
  #3 Martin 😡 (pat=0, 🍕 🍔 🍕)
  #4 Partrice 🙂 (pat=5, 🍕)
 ⏩ AVANCER_TEMPS;2
-[🍳 t=8] Cmd #4 commence (3 min)
-[t=9] 👥4 😋3 😡1 📥0 🍳1
+[🍳 t=9] Cmd #4 commence (3 min)
+[t=9] 👥4 😋2 😡1 📥0 🍳1
  #1 Alice 😋 (pat=3, 🍟)
  #2 Jorge 😋 (pat=3, 🍕 🍔 🍟)
  #3 Martin 😡 (pat=0, 🍕 🍔 🍕)
- #4 Partrice 😋 (pat=3, 🍕)
+ #4 Partrice 🙂 (pat=3, 🍕)
 ⏩ AVANCER_TEMPS;3
-[✅ t=10] Cmd #4 terminée → Partrice 😋
+[✅ t=12] Cmd #4 terminée → Partrice 😋
 [t=12] 📊 Stats
 	Clients totaux : 4
 	😋 Servis		: 3
 	😡 Fâchés		: 1
 	💰 Chiffre d'affaires : 49.45 $
 	Plats vendus :
-		PIZZA : 2
 		FRITES : 2
 		BURGER : 1
+		PIZZA : 2
 ===================================

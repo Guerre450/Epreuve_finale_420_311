@@ -5,6 +5,8 @@ import mv.sdd.model.EtatClient;
 import mv.sdd.model.MenuPlat;
 import mv.sdd.model.Stats;
 
+import java.util.List;
+
 public final class Formatter {
 
     private Formatter() {
@@ -65,9 +67,13 @@ public final class Formatter {
      * @param client client à afficher
      * @param codePlat représentation des plats
      */
-    public static String clientLine(Client client, MenuPlat codePlat) {
-        // TODO: à implémenter
-        return null;
+    public static String clientLine(Client client, List<MenuPlat> codePlat) {
+        StringBuilder strBuilder = new StringBuilder();
+        codePlat.stream().map(Formatter::emojiPlat).forEach( emoji -> strBuilder.append(emoji).append(" "));
+        strBuilder.setLength(strBuilder.length()-1);
+        return String.format(Constantes.LIGNE_CLIENT,client.getId(),client.getNom(),emojiEtatClient(client.getEtat()),
+                client.getPatience(),
+                strBuilder);
     }
 
     // ---------- Lignes événements ---------- //
@@ -91,7 +97,7 @@ public final class Formatter {
     }
 
     public static String eventCommandeDebut(int temps, int idCommande, int duree) {
-        return String.format(Constantes.EVENT_CMD_DEBUT, idCommande,duree );
+        return String.format(Constantes.EVENT_CMD_DEBUT,temps, idCommande,duree );
     }
 
     public static String eventCommandeTerminee(int temps, int idCommande, Client client) {
@@ -102,5 +108,15 @@ public final class Formatter {
         return String.format(Constantes.EVENT_CLIENT_FACHE, temps, client.getNom());
     }
     // TODO : Ajouter le formattage des affichages manquants au besoin
+    public static String demarrerService(int tempsMaximal, int nbCuisinier){
+        return String.format(Constantes.DEMARRER_SERVICE,tempsMaximal, nbCuisinier);
+    }
+
+    public static String avancerTemps(int nbAvance){
+        return Constantes.AVANCER_TEMPS + nbAvance;
+    }
+
+
+
 }
 
